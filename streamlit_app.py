@@ -5,7 +5,6 @@ import os
 import openai
 from gtts import gTTS
 import base64
-import pyttsx3
 
 # 데이터 로딩
 # 현재 파일의 위치를 기준으로 data 디렉토리 경로 설정
@@ -153,7 +152,7 @@ with st.sidebar:
     st.markdown(" --- ")
 
     # TTS 음성 선택하기 위한 라디오 버튼 생성
-    tts_voice = st.radio(label="TTS 음성 선택", options=["여성", "남성", "없음"])
+    tts_voice = st.radio(label="TTS 음성 선택", options=["TTS On", "TTS Off"])
     st.markdown("""<style>div[class*="stRadio"] > label > div[data-testid="stMarkdownContainer"] > p {font-size: 20px; font-weight: bold;}</style>""", unsafe_allow_html=True)
 
     st.markdown(" --- ")
@@ -187,9 +186,9 @@ if response := st.chat_input("텍스트를 입력하세요"):
     st.session_state["messages"].append({"role": "assistant", "content": response})
     st.chat_message("assistant").write(response)
 
-    if tts_voice != "없음":
+    if tts_voice != "TTS Off":
         # Assistant 응답을 TTS로 변환
-        if tts_voice == "남성":
+        if tts_voice == "TTS On":
             lang = 'ko'
             tts = gTTS(text=response, lang=lang, slow=False)
             tts.save("response.mp3")
@@ -204,19 +203,4 @@ if response := st.chat_input("텍스트를 입력하세요"):
             </audio>
             """
             st.markdown(audio_html, unsafe_allow_html=True)
-        elif tts_voice == "여성":
-            engine = pyttsx3.init()
-            engine.setProperty('voice', 'com.apple.speech.synthesis.voice.samantha')  # 선택된 여성 목소리 설정 (Mac OS의 경우)
-            engine.save_to_file(response, 'response.mp3')
-            engine.runAndWait()
 
-            # TTS 음성 재생
-            audio_file = open("response.mp3", "rb")
-            audio_bytes = audio_file.read()
-            audio_base64 = base64.b64encode(audio_bytes).decode()
-            audio_html = f"""
-            <audio autoplay style="display:none">
-            <source src="data:audio/mp3;base64,{audio_base64}" type="audio/mp3">
-            </audio>
-            """
-            st.markdown(audio_html, unsafe_allow_html=True)
