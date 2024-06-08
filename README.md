@@ -11,6 +11,7 @@ Maker : 박우빈, 이건해, 이승우
 4. AIHub의 감성 대화 말뭉치 데이터를 활용하였습니다.
    
 https://www.aihub.or.kr/aihubdata/data/view.do?currMenu=115&topMenu=100&dataSetSn=86
+
 6. 프로젝트 명 : 감성 대화 말뭉치를 이용한 감성 챗봇
 7. 앱 이름 : 감성 챗봇
 8. 본 프로젝트의 박우빈, 이건해, 이승우 학생이 공동으로 제작하였으며 수정을 금합니다.
