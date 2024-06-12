@@ -148,6 +148,7 @@ with st.expander("감성 챗봇에 관하여", expanded=False):
         - 본 채팅 프로그램은 AI Hub의 감성 대화 말뭉치 데이터를 활용하여 제작되었습니다.
         - GPT 모델의 선택이 가능합니다.( [기본]gpt-3.5-turbo, gpt-4)
         - OpenAI API key를 입력하지 않으면 작동이 되지 않으니 주의 바랍니다.
+        - http://172.15.1.14:5000
         """)
     st.markdown(" --- ")
     st.write(
